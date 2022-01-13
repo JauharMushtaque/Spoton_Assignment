@@ -1,6 +1,6 @@
 package com.example.spotonassignment.di
 
-import com.example.spoton_assignment.network.Api
+import com.example.spotonassignment.data.remote.Api
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -38,7 +38,7 @@ class AppModule {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .baseUrl(Api.mBaseUrl)
             .client(okHttpClient)
-            .build();
+            .build()
     }
 
     @Provides

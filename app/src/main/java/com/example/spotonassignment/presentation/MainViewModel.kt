@@ -1,11 +1,11 @@
-package com.example.spotonassignment
+package com.example.spotonassignment.presentation
 
-import android.provider.ContactsContract
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.spotonassignment.model.Data
+import com.example.spotonassignment.data.repository.MainRepository
+import com.example.spotonassignment.entities.Data
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject

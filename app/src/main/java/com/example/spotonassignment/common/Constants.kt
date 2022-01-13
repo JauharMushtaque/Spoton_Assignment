@@ -1,4 +1,4 @@
-package com.example.spotonassignment
+package com.example.spotonassignment.common
 
 class Constants {
     companion object{

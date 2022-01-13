@@ -4,18 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black"
-    android:paddingLeft="3dp"
-    android:paddingRight="3dp">
+    android:background="@color/background_black"
+    android:padding="5dp">
 
 
     <TextView
         android:id="@+id/serial_no"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="xxxx"
+        android:text="xx"
         android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="@color/grey"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/guideline"
@@ -28,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.1" />
 
 
     <TextView
@@ -64,7 +63,7 @@
         app:layout_constraintLeft_toRightOf="@+id/guideline1"
         app:layout_constraintRight_toLeftOf="@+id/price"
         app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center"/>
+        android:gravity="left"/>
 
     <TextView
         android:id="@+id/price"

@@ -1,16 +1,16 @@
-package com.example.spotonassignment
+package com.example.spotonassignment.data.repository
 
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
-import com.example.spoton_assignment.network.Api
-import com.example.spotonassignment.model.CryptoItem
-import com.example.spotonassignment.model.Data
+import com.example.spotonassignment.common.AppUtils
+import com.example.spotonassignment.data.remote.Api
+import com.example.spotonassignment.common.Constants
+import com.example.spotonassignment.entities.CryptoItem
+import com.example.spotonassignment.entities.Data
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(val api: Api) {
@@ -23,26 +23,23 @@ class MainRepository @Inject constructor(val api: Api) {
     fun getUpdatedCrypto(): List<Data> {
         api.getCryptoitem().enqueue(object : Callback<CryptoItem> {
             override fun onResponse(call: Call<CryptoItem>, response: Response<CryptoItem>) {
-                val d = Log.d(TAG, "onResponse: ")
-                cryptoData = response.body().let { it?.data!! }
+                if(response.isSuccessful && response.body()!=null){
+                    Log.d(TAG, "onResponse: ")
+                    cryptoData = response.body().let { it?.data!! }
+                }else{
+                    Log.d(TAG, "error: "+response.errorBody())
+                }
+
 
             }
 
             override fun onFailure(call: Call<CryptoItem>, t: Throwable) {
                 Log.d(TAG, "onFailure: " + t.message)
-                cryptoData = getRawResponse()
+                cryptoData = AppUtils.getRawResponse()
             }
 
         })
         return cryptoData
     }
 
-
-    private fun getRawResponse(): List<Data> {
-        val cryptoItem: CryptoItem =
-            Gson().fromJson<CryptoItem>(Constants.rawResponse, CryptoItem::class.java)
-        Log.d(TAG, "getRawResponse: " + cryptoItem.toString())
-        cryptoData = cryptoItem.data
-        return cryptoData
-    }
 }
